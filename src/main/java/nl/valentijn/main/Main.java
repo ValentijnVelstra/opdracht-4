@@ -6,8 +6,6 @@ import nl.valentijn.system.Library;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-import static nl.valentijn.system.Library.books;
-
 public class Main {
     public static void main(String[] args) {
 
@@ -79,31 +77,16 @@ public class Main {
                     Scanner remover = new Scanner(System.in);
                     System.out.println("Book ID: ");
                     long removeBook = Long.parseLong(remover.next());
-                    Book bookFound = null;
 
-                    for (Book book : books){
-                        if (book.id == removeBook){
-                            bookFound = book;
-                            break;
-                        }
-                    }
-                    library.removeBook(bookFound);
+                    library.removeBook(removeBook);
 
                 case 3:
 
                     Scanner bookFinder = new Scanner(System.in);
                     System.out.println("Book ID: ");
-                    long foundBook = Long.parseLong(bookFinder.next());
-                    Book bookFound1 = null;
-
-                    for (Book book : books){
-                        if (book.id == foundBook){
-                            bookFound1 = book;
-                            break;
-                        }
-                    }
-                    library.showBook(bookFound1); //dit zet alles klaar om geprint te worden
-                    System.out.println(library.showBook(bookFound1)); // we moeten java nog wel vertellen het uit te printen
+                    long foundBook1 = Long.parseLong(bookFinder.next());
+                    library.showBook(foundBook1); //dit zet alles klaar om geprint te worden
+                    System.out.println(library.showBook(foundBook1)); // we moeten java nog wel vertellen het uit te printen
                     break;
 
                 case 4:
@@ -111,15 +94,8 @@ public class Main {
                     Scanner bookBorrow = new Scanner(System.in);
                     System.out.println("Book ID: ");
                     long borrowedBook = Long.parseLong(bookBorrow.next());
-                    Book bookBorrowed = null;
 
-                    for (Book book : books){
-                        if (book.id == borrowedBook){
-                            bookBorrowed = book;
-                            break;
-                        }
-                    }
-                    library.borrowBook(bookBorrowed);
+                    library.borrowBook(borrowedBook);
                     break;
 
                 case 5:
@@ -127,36 +103,22 @@ public class Main {
                     Scanner bookReturn = new Scanner(System.in);
                     System.out.println("Book ID: ");
                     long returnedBook = Long.parseLong(bookReturn.next());
-                    Book bookReturned = null;
-
-                    for (Book book : books){
-                        if (book.id == returnedBook){
-                            bookReturned = book;
-                            break;
-                        }
-                    }
-                    library.returnBook(bookReturned);
+                    library.returnBook(returnedBook);
                     break;
 
                 case 6:
-                    for (Book book : books){
-                        System.out.println(library.showBook(book));
-                    }
+
+                    Library.showBooks();
+                    break;
+
                 case 7:
 
-                    for (Book book : books){
-                        if (book.borrowed == true){
-                            System.out.println(library.showBook(book));
-                            break;
-                        }
-                    }
+                    Library.showBorrowedBooks();
+                    break;
+
                 case 8:
-                    for (Book book : books){
-                        if (book.borrowed == false){
-                            System.out.println(library.showBook(book));
-                            break;
-                        }
-                    }
+                    Library.showAvailableBooks();
+                    break;
 
             }
         }
